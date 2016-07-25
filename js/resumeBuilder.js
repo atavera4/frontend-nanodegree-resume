@@ -42,15 +42,15 @@ var work = {
 
 var projects =
 {
-  "projects": [
+  "project": [
     {
       "title":"sample project 1",
       "dates":"2014",
       "description": "who moved my stuff to some other place. this is the same description as the other one",
       "images":
       [
-        "https:/.",
-        "https image"
+        "<img src='images/placeholder.gif'>",
+        "asdfasdfasdf"
       ]
     }
   ]
@@ -59,15 +59,15 @@ var projects =
 var education = {
   "schools": [
     {
-      "name":"n",
+      "name":"school 1",
       "location":"ny",
-      "degree":"masters",
+      "degree":"B.S",
       "majors":["cs"],
       "dates": 2013,
       "url": "example.com"
     },
     {
-      "name":"n2",
+      "name":"school 2",
       "location":"ny",
       "degree":"masters",
       "majors":["cs"],
@@ -98,27 +98,32 @@ $("#header").prepend(formattedName);
 
 
 function displayBio() {
-  $("#topContacts").append(HTMLmobile);
-  $("#topContacts").append(HTMLemail);
-  $("#topContacts").append(HTMLtwitter);
-  $("#topContacts").append(HTMLgithub);
-  $("#topContacts").append(HTMLblog);
-  $("#topContacts").append(HTMLlocation);
+  var mobile = HTMLmobile.replace("%data%", "123456");
+  var email = HTMLemail.replace("%data%", "123456");
+  var github = HTMLgithub.replace("%data%", "123456");
+  var location = HTMLlocation.replace("%data%", "123456");
+  var blog = HTMLblog.replace("%data%", "123456");
+  var twitter = HTMLtwitter.replace("%data%", "123456");
+  $("#topContacts").append(mobile);
+  $("#topContacts").append(email);
+  $("#topContacts").append(twitter);
+  $("#topContacts").append(github);
+  $("#topContacts").append(blog);
+  $("#topContacts").append(location);
   $("#header").append(bio.bioPic);
 
-  $("#footerContacts").append(HTMLmobile);
-  $("#footerContacts").append(HTMLemail);
-  $("#footerContacts").append(HTMLtwitter);
-  $("#footerContacts").append(HTMLgithub);
-  $("#footerContacts").append(HTMLblog);
-  $("#footerContacts").append(HTMLlocation);
+  $("#footerContacts").append(mobile);
+  $("#footerContacts").append(email);
+  $("#footerContacts").append(twitter);
+  $("#footerContacts").append(github);
+  $("#footerContacts").append(blog);
+  $("#footerContacts").append(location);
 
 
 
 
 
   if(bio.skills.length > 0) {
-    HTMLskillsStart
     $("#header").append(HTMLskillsStart);
 
     var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
@@ -154,7 +159,7 @@ function displayEducation() {
 
       var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
       var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
-      var formattedDegree = HTMLschoolDegree.replace("%data", education.schools[school].degree);
+      var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
       var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 
       $(".education-entry").append(formattedName);
@@ -183,8 +188,7 @@ function displayProjects() {
   $(".project-entry:last").append(formattedTitle);
   var formattedDates = HTMLprojectDates.replace("%data%", "2016");
   $(".project-entry:last").append(formattedDates);
-
-  $("#projects").append(HTMLprojectStart);
+  $(".project-entry:last").append(projects.project[0].images[0]);
 }
 
 function displayMap() {
